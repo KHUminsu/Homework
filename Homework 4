@@ -1,0 +1,42 @@
+float []x, y, vx, vy;
+float xx=200, yy=250, s=1.0;
+int n = 35;
+void setup(){
+  size(1800, 1600);
+  x = new float[n]; y = new float[n]; // x, y is position of mine
+  vx = new float[n]; vy = new float[n]; // vx, vy is velocity of mine
+for (int i=0; i<n; i++) {
+  x[i] = random(0, width); y[i] = random(0, height);
+  vx[i] = random(3); vy[i] = random(3);
+  }
+}
+
+     
+
+void draw(){
+  background(120, 255, 0);
+  for (int i=0; i<n; i++){
+    x[i] += vx[i];
+    y[i] += vy[i];
+    if (x[i]>width || x[i] <0) vx[i] = -vx[i];
+    if (y[i]>height || y[i] <0) vy[i] = -vy[i];
+    mine(x[i], y[i]);
+  }
+  if(keyPressed){
+    if(key == 'a') xx -= 5;
+  else if(key== 'd') xx += 5;
+  else if(key == 'w') yy -= 5;
+  else if(key == 's') yy += 5;
+  }
+   minsu(xx,yy,s);
+   for (int i=0; i<n; i++){
+   if(dist(x[i], y[i], xx, yy) < 5){
+     background(255);
+     textSize(30);
+     text("Game Over", width/3, height/2);
+   }
+}
+}
+   
+   
+     

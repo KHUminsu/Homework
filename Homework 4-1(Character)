@@ -1,0 +1,26 @@
+void minsu(float xx, float yy, float m){ //m is multiple
+m=0.5;
+  stroke(0);
+  fill(250, 224, 212);
+  ellipse(xx, yy, 100*m, 200*m); // face
+  fill(255);
+  circle(xx-50*m, yy-10*m, 40*m); //left eye
+  circle(xx+50*m, yy-10*m, 40*m); //right eye
+  fill(250, 224, 212);
+  rect(xx-10*m, yy-30*m, 20*m, 80*m); // nose
+  fill(0);
+  circle(xx-55*m, yy-10*m, 25*m); // left pupil
+  circle(xx+55*m, yy-10*m, 25*m); //right pupil
+  fill(255,0,0);
+  arc(xx-10*m, yy+80*m, 40*m, 20*m, 0, PI); // mouth
+  noStroke();
+  fill(153, 103, 0);
+  ellipse(xx, yy-70*m, 220*m, 50*m); // hat
+  circle(xx, yy-100*m, 100*m); //hat
+}
+
+void mine(float a, float b){
+  fill(255);
+  stroke(0);
+  circle(a, b, 50);
+}

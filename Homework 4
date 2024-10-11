@@ -1,4 +1,4 @@
-float []x, y, c, vx, vy;
+float []x, y, c, ss, vx, vy;
 float xx=200, yy=250, s=1.0;
 int n = 35;
 void setup(){
@@ -6,10 +6,12 @@ void setup(){
   x = new float[n]; y = new float[n]; // x, y is position of mine
   vx = new float[n]; vy = new float[n]; // vx, vy is velocity of mine
   c=new float[n]; // c is color of mine
+  ss= new float [n]; // ss is size of mine
 for (int i=0; i<n; i++) {
   x[i] = random(0, width); y[i] = random(0, height);
   vx[i] = random(3); vy[i] = random(3);
-  c[i]=random (255);
+  c[i]=random (255); // color of mine
+  ss[i]=random(2, 4); // size of mine
   }
 }
 
@@ -20,7 +22,7 @@ void draw(){
     y[i] += vy[i];
     if (x[i]>width || x[i] <0) vx[i] = -vx[i];
     if (y[i]>height || y[i] <0) vy[i] = -vy[i];
-    mine(x[i], y[i], c[i]);
+    mine(x[i], y[i], ss[i], c[i]);
   }
   if(keyPressed){
     if(key == 'a') xx -= 5;
@@ -28,11 +30,11 @@ void draw(){
   else if(key == 'w') yy -= 5;
   else if(key == 's') yy += 5;
   }
+  for (int i=0; i<n; i++){
    minsu(xx,yy,s);
-   for (int i=0; i<n; i++){
-   if(dist(x[i], y[i], xx, yy) < 5){
-     background(255);
-     textSize(30);
-     text("Game Over", width/3, height/2);
-   }
 }
+}
+
+   
+   
+     

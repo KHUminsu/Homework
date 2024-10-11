@@ -1,16 +1,18 @@
-float []x, y, c, ss, vx, vy;
+float []x, y, r, g, b, ss, vx, vy;
 float xx=200, yy=250, s=1.0;
 int n = 35;
 void setup(){
   size(1800, 1600);
   x = new float[n]; y = new float[n]; // x, y is position of mine
   vx = new float[n]; vy = new float[n]; // vx, vy is velocity of mine
-  c=new float[n]; // c is color of mine
+  r=new float[n]; g=new float[n]; b=new float[n]; // r,g,b is color of mine
   ss= new float [n]; // ss is size of mine
 for (int i=0; i<n; i++) {
   x[i] = random(0, width); y[i] = random(0, height);
   vx[i] = random(3); vy[i] = random(3);
-  c[i]=random (255); // color of mine
+  r[i]=int(random (255)); // color of mine
+  g[i]=int(random (255)); // color of mine
+  b[i]=int(random (255)); // color of mine
   ss[i]=random(2, 4); // size of mine
   }
 }
@@ -22,7 +24,7 @@ void draw(){
     y[i] += vy[i];
     if (x[i]>width || x[i] <0) vx[i] = -vx[i];
     if (y[i]>height || y[i] <0) vy[i] = -vy[i];
-    mine(x[i], y[i], ss[i], c[i]);
+    mine(x[i], y[i], ss[i], r[i], g[i], b[i]);
   }
   if(keyPressed){
     if(key == 'a') xx -= 5;

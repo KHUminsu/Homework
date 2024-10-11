@@ -19,8 +19,8 @@ m=0.5;
   circle(xx, yy-100*m, 100*m); //hat
 }
 
-void mine(float a, float b){
-  fill(255);
+void mine(float a, float b, float c, float d){
+  fill(c);
   stroke(0);
-  circle(a, b, 50);
+  circle(a, b, d);
 }

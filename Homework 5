@@ -1,0 +1,116 @@
+float xx = 200, yy = 250, s = 1.0; // minsu's position and size
+boolean game = true;
+int n = 35; 
+
+mine[] mines = new mine[n]; 
+character minsu; 
+
+void setup() {
+  size(1800, 1600);
+  for (int i = 0; i < n; i++) {
+    mines[i] = new mine();
+  }
+  minsu = new character(xx, yy, s);
+}
+
+void draw() {
+  if (game) {
+    background(120, 255, 0); 
+  } else {
+    background(255, 0, 0);
+    textSize(30);
+    fill(0);
+    text("Game Over", width / 3, height / 2);
+    return; 
+  }
+  
+
+  for (int i = 0; i < n; i++) {
+    mines[i].move();
+    mines[i].display();
+  }
+  
+  minsu.display();
+  
+
+  for (int i = 0; i < n; i++) {
+    if (mines[i].checkCollision(minsu.x, minsu.y, 40 * minsu.size)) {
+      game = false; 
+    }
+  }
+}
+
+
+class mine { // mine's class
+  float x, y; 
+  float vx, vy; 
+
+  mine() {
+    x = random(width);
+    y = random(height);
+    vx = random(3); 
+    vy = random(3);
+  }
+  
+  void move() {
+    x += vx;
+    y += vy;
+ 
+    if (x > width || x < 0) vx *= -1;
+    if (y > height || y < 0) vy *= -1;
+  }
+
+  void display() {
+    fill(255);
+    stroke(0);
+    circle(x, y, 50);
+  }
+ 
+  boolean checkCollision(float xx, float yy, float radius) {
+    return dist(x, y, xx, yy) < radius + 25;
+  }
+}
+
+class character { //character's class
+  float x, y, size; 
+  
+  character(float x, float y, float size) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+  }
+
+  void display() {
+    float m = size;
+    stroke(0);
+    fill(250, 224, 212);
+    ellipse(x, y, 100 * m, 200 * m); // 얼굴
+    fill(255);
+    circle(x - 50 * m, y - 10 * m, 40 * m); // 왼쪽 눈
+    circle(x + 50 * m, y - 10 * m, 40 * m); // 오른쪽 눈
+    fill(250, 224, 212);
+    rect(x - 10 * m, y - 30 * m, 20 * m, 80 * m); // 코
+    fill(0);
+    circle(x - 55 * m, y - 10 * m, 25 * m); // 왼쪽 눈동자
+    circle(x + 55 * m, y - 10 * m, 25 * m); // 오른쪽 눈동자
+    fill(255, 0, 0);
+    arc(x - 10 * m, y + 80 * m, 40 * m, 20 * m, 0, PI); // 입
+    noStroke();
+    fill(153, 103, 0);
+    ellipse(x, y - 70 * m, 220 * m, 50 * m); // 모자
+    circle(x, y - 100 * m, 100 * m); // 모자
+  }
+  
+  void move(char direction) {
+    if (direction == 'a') x -= 5;
+    else if (direction == 'd') x += 5;
+    else if (direction == 'w') y -= 5;
+    else if (direction == 's') y += 5;
+  }
+}
+
+void keyPressed() {
+  if (game) { 
+    minsu.move(key);
+  }
+}

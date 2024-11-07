@@ -33,7 +33,7 @@ void draw() {
 
   // 지뢰와 민수 충돌 확인
   for (int i = 0; i < n; i++) {
-    if (mines[i].checkCollision(minsu.x, minsu.y, 40 * minsu.size)) {
+    if (mines[i].checkCollision(minsu.x, minsu.y, 50 * minsu.size)) {
       game = false;
     }
   }
